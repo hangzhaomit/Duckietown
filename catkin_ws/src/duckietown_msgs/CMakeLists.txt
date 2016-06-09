@@ -10,6 +10,7 @@ find_package(catkin REQUIRED COMPONENTS
   message_generation
   std_msgs
   geometry_msgs
+  visualization_msgs
   sensor_msgs
   tf_conversions
   tf
@@ -52,28 +53,63 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
   FILES
   CarControl.msg
-  LEDControl.msg
+  CoordinationSignal.msg
   DuckieSensor.msg
   LanePose.msg
+#  LEDControl.msg
+  LEDDetection.msg
+  LEDDetectionArray.msg
+  LEDDetectionDebugInfo.msg
   WheelsCmd.msg
-  TagDetection.msg
-  AprilTags.msg
+  WheelsCmdStamped.msg
+  Pose2DStamped.msg
+  SignalsDetection.msg
+  Twist2DStamped.msg
+  AprilTagDetection.msg
+  AprilTagDetectionArray.msg
+  AprilTagsWithInfos.msg
+  TagInfo.msg
   Pixel.msg
   Vector2D.msg
   Segment.msg
   SegmentList.msg
-  ControlMode.msg
   Rect.msg
   Rects.msg
   SceneSegments.msg
+  SourceTargetNodes.msg
+  CoordinationClearance.msg
+#  IntersectionDetection.msg
+#  CoordinationSignal.msg
+#  TrafficLightDetection.msg
+  VehicleCorners.msg
+  VehiclePose.msg
+#  VehicleDetection.msg
+  FSMState.msg
+  BoolStamped.msg
+  StopLineReading.msg
+  LEDInterpreter.msg
+  AntiInstagramHealth.msg
+  AntiInstagramTransform.msg
+  KinematicsWeights.msg
+  KinematicsParameters.msg
+  ThetaDotSample.msg
+  Vsample.msg
+  Trajectory.msg
+  ObstacleType.msg
+  ObstacleImageDetection.msg
+  ObstacleImageDetectionList.msg
+  ObstacleProjectedDetection.msg
+  ObstacleProjectedDetectionList.msg
+
 )
 
 ## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
-#   Service2.srv
-# )
+add_service_files(
+  FILES
+  SetFSMState.srv
+  SetValue.srv
+  # Service2.srv
+)
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -122,7 +158,13 @@ generate_messages(
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES duckietown_msgs
-   CATKIN_DEPENDS geometry_msgs roscpp rospy sensor_msgs std_msgs message_runtime
+   CATKIN_DEPENDS
+   geometry_msgs
+   roscpp rospy
+   sensor_msgs
+   std_msgs
+   message_runtime
+   visualization_msgs
 #  DEPENDS system_lib
 )
 
